@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.scss">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Trasaver</title>
+    <!-- 
+        Made with love by Saurav Hathi
+    -->
+    <style>
+        :root {
+            --primary-color: #07DA07;
+            --secondary-color: #0B430B;
+            --white-color: #fff;
+            --black-color: #000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: black;
+            font-family: 'Nunito Sans', sans-serif;
+            color: var(--white-color);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            padding: 5px 0;
+            font-size: 22px;
+            font-weight: 600;
+            max-width: 85rem;
+            margin: 0 auto;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            position: sticky;
+            top: 0;
+        }
+
+        .logo {
+            width: 100px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 80%;
+        }
+
+        .nav-links {
+            flex: 1;
+            text-align: right;
+        }
+
+        .nav-links ul li {
+            display: inline-block;
+            list-style: none;
+            margin: 0 20px;
+            font-weight: 500;
+            font-size: 22px;
+        }
+
+        .nav-links ul li a {
+            text-decoration: none;
+            color: var(--white-color);
+        }
+
+        .nav-links ul li.active a {
+            color: var(--primary-color);
+        }
+
+        .btn {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border: 1px solid var(--white-color);
+            border-radius: 5px;
+            padding: 10px 24px;
+            color: var(--white-color);
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                justify-content: space-between;
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .logo {
+                width: 50px;
+                height: 50px;
+            }
+
+            .logo img {
+                width: 100%;
+            }
+
+            .nav-toggle {
+                display: block;
+                font-size: 30px;
+                cursor: pointer;
+            }
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 85rem;
+            margin: 0 auto;
+        }
+
+        .container {
+            display: flex;
+            gap: 50px;
+        }
+
+        .hero-left {
+            flex: 1;
+            place-self: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .highlight {
+            color: var(--primary-color);
+        }
+
+        .hero-text h1 .bold {
+            font-weight: bold;
+        }
+
+        .hero-text p {
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 1.5;
+            margin: 20px 0;
+            font-weight: 500;
+        }
+
+        .hero-btn {
+            display: flex;
+            gap: 20px;
+        }
+
+        .hero-right {
+            flex: 1;
+        }
+
+        .hero-right img {
+            width: 90%;
+            object-fit: cover;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                padding: 100px 0;
+            }
+
+            .hero-text h1{
+                font-size: 2.5rem;
+            }
+
+            .hero-left {
+                text-align: center;
+            }
+
+            .hero-right {
+                display: none;
+            }
+
+            .hero-text p {
+                font-size: 1.25rem;
+            }
+
+            .hero-btn {
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
+        .feature {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            max-width: 85rem;
+            margin: 0 auto;
+            padding: 100px 0;
+        }
+
+        .feature .container {
+            flex-direction: column;
+            gap: 80px;
+        }
+
+        .feature .feature-top {
+            text-align: center;
+        }
+
+        .feature .feature-top h1 {
+            margin-bottom: 2%;
+        }
+
+        .feature-top h1 {
+            font-size: 3rem;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        .feature .feature-top p {
+            width: 70%;
+            margin: 0 auto;
+            font-weight: semi-bold;
+        }
+
+        .feature .feature-bottom {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            margin: 0 5rem 0 5rem;
+        }
+
+        .feature .feature-bottom .feature-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.2rem;
+        }
+
+        .feature .feature-bottom .feature-box .feature-icon {
+            width: 100px;
+            height: 100px;
+        }
+
+        .feature .feature-bottom .feature-box .feature-icon img {
+            width: 100%;
+        }
+
+        .feature .feature-bottom .feature-box .feature-text {
+            text-align: center;
+        }
+
+        .feature .feature-bottom .feature-box .feature-text h1 {
+            font-size: 1rem;
+            margin: 0 0 0.2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .feature .feature-bottom {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                margin: 0 2rem 0 2rem;
+            }
+
+            .feature .feature-bottom .feature-box .feature-text h1 {
+                font-size: 1rem;
+            }
+
+            .feature .feature-bottom .feature-box .feature-text p {
+                font-size: 0.8rem;
+            }
+
+            .feature .feature-top p {
+                width: 90%;
+            }
+
+            .feature .feature-top h1 {
+                font-size: 2rem;
+            }
+
+            .feature .feature-bottom .feature-box .feature-icon {
+                width: 80px;
+                height: 80px;
+            }
+
+            .feature .feature-bottom .feature-box .feature-icon img {
+                width: 100%;
+            }
+
+            .feature .feature-bottom .feature-box .feature-text h1 {
+                font-size: 1rem;
+            }
+
+            .feature .feature-bottom .feature-box .feature-text p {
+                font-size: 0.8rem;
+            }
+
+            .feature .feature-top p {
+                width: 90%;
+            }
+        }
+
+        .about {
+            position: relative;
+        }
+
+        .about .overlay {
+            background-image: url('images/abso-bg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .about .container {
+            max-width: 85rem;
+            margin: 0 auto;
+            padding: 100px 0;
+        }
+
+        .about .heading {
+            flex: 1;
+            place-self: flex-end;
+        }
+
+        .about .heading span {
+            display: block;
+            width: 100px;
+            height: 5px;
+            background: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .about .heading h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .about .content {
+            flex: 1;
+        }
+
+        .about .content p {
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 1.5;
+            margin: 20px 0;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .about .container {
+                flex-direction: column;
+                gap: 50px;
+                padding: 0 10px;
+            }
+
+            .about .heading {
+                place-self: center;
+            }
+
+            .about .heading h1 {
+                font-size: 2rem;
+            }
+
+            .about .content p {
+                font-size: 1rem;
+            }
+        }
+
+        footer {
+            position: relative;
+            margin-top: 100px;
+        }
+
+        .footer-overlay {
+            background-image: url("images/footer-bg.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        footer .row {
+            max-width: 85rem;
+            margin: 0 auto;
+            padding: 40px 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .footer .col-md-3 {
+            width: 25%;
+            padding: 0 15px;
+
+        }
+
+        .footer .col-md-3:last-child {
+            margin-left: auto;
+        }
+
+        .footer .col-md-3 .footer-logo {
+            width: 100px;
+            height: 100px;
+        }
+
+        .footer .col-md-3 p {
+            color: var(--white-color);
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .footer .col-md-3 h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .footer .col-md-3 ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer .col-md-3 ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer .col-md-3 ul li a {
+            color: var(--white-color);
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .footer .col-md-3 ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .footer .col-md-3 .social-links {
+            margin-top: 20px;
+        }
+
+        .footer .col-md-3 .social-links i {
+            font-size: 1.5rem;
+            margin-right: 10px;
+            color: var(--white-color);
+        }
+
+        .footer .col-md-3 .social-links i:hover {
+            color: #f5c518;
+        }
+
+        .footer .col-md-3 address {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-style: normal;
+        }
+
+        .footer .col-md-3 address p {
+            font-size: 1rem;
+            color: var(--white-color);
+        }
+
+        .footer .col-md-3 address a {
+            font-size: 1rem;
+            color: var(--white-color);
+            text-decoration: none;
+        }
+
+        .footer .col-md-3 form {
+            position: relative;
+        }
+
+        .footer .col-md-3 .newsletter-text {
+            color: var(--white-color);
+        }
+
+        .footer .col-md-3 .form-input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid var(--white-color);
+            border-radius: 5px;
+        }
+
+        .footer .col-md-3 .btn-subscribe {
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            bottom: 3px;
+            padding: 0 15px;
+            border: 1px solid var(--white-color);
+            border-radius: 5px;
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .footer .col-md-3 .btn-subscribe:hover {
+            background-color: var(--white-color);
+            color: var(--primary-color);
+        }
+
+        .footer .row .text-right {
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .footer .col-md-3 {
+                width: 50%;
+                margin-bottom: 30px;
+            }
+
+            .footer .col-md-3:last-child {
+                margin-left: 0;
+            }
+
+            .footer .col-md-3 .footer-logo {
+                width: 80px;
+                height: 80px;
+            }
+
+            .footer .col-md-3 .social-links {
+                margin-top: 10px;
+            }
+
+            .footer .col-md-3 .social-links i {
+                font-size: 1.2rem;
+            }
+
+            .footer .col-md-3 .newsletter-text {
+                font-size: 1rem;
+            }
+
+            .footer .col-md-3 form {
+                margin-top: 10px;
+                text-align: right;
+            }
+
+            .footer .col-md-3 .form-input {
+                padding: 5px 10px;
+            }
+
+            .footer .col-md-3 form .btn-subscribe {
+                position: relative;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                padding: 5px 10px;
+                margin-top: 10px;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <img src="images/logo.png" alt="logo">
+        </div>
+        <div class="nav-links">
+            <ul>
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Save</a></li>
+                <li><a href="#">Travel</a></li>
+                <li><a href="#">Wallet</a></li>
+            </ul>
+        </div>
+        <button class="btn">Contact Us</button>
+    </nav>
+    <!-- hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-left">
+                <div class="hero-text">
+                    <h1><span class="highlight">SAVING</span> <span class="bold">
+                            YOUR MONEY
+                            <br> FOR YOUR THROUGH
+                            <br> TRAVE FUND
+                        </span>
+                    </h1>
+                    <p>Save your money for travel fund and get a chance to win a trip to your dream destination. we will
+                        help you
+                        to
+                        save your money and make your dream come true.
+                    </p>
+                </div>
+                <div class="hero-btn">
+                    <button class="btn">Save Now</button>
+                    <button class="btn">UI/UX Case Study</button>
+                </div>
+            </div>
+            <div class="hero-right">
+                <img src="images/hero.png" alt="hero">
+            </div>
+        </div>
+    </section>
+    <!-- end of hero -->
+    <!-- feature -->
+    <section class="feature">
+        <div class="container">
+            <div class="feature-top">
+                <h1>
+                    Why to
+                    <span class="highlight italic">travel</span>
+                    with us?
+                </h1>
+                <p>
+                    Ambitious about your next adventure but sick of saving money? End up sneaking into those savings
+                    because well. You're bored? Lost motivation? You don't feel the funds are growing fast enough?
+                    Saving just sucks? Trasave has introduced an epic new way to reward you for your savings for travel
+                </p>
+            </div>
+            <div class="feature-bottom">
+                <div class="feature-box">
+                    <div class="feature-icon">
+                        <img src="images/save-money.png" alt="save-money">
+                    </div>
+                    <div class="feature-text">
+                        <h1>SAVE MONEY</h1>
+                        <p>
+                            Invest in trasave security for future
+                        </p>
+                    </div>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon">
+                        <img src="images/earn-rewards.png" alt="earn-rewards">
+                    </div>
+                    <div class="feature-text">
+                        <h1>EARN REWARDS</h1>
+                        <p>
+                            Earn rewards and track your money
+                        </p>
+                    </div>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon">
+                        <img src="images/travel-global.png" alt="travel-global">
+                    </div>
+                    <div class="feature-text">
+                        <h1>TRAVEL GLOBAL</h1>
+                        <p>
+                            Use this money for your travelling
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end of feature -->
+    <section class="about">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="heading">
+                <span></span>
+                <h1>
+                    Save your travel
+                    <br>
+                    money in Trasave and
+                    <br>
+                    get top grade security
+                    <br>
+                    with us
+                </h1>
+            </div>
+            <div class="content">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae. Quisquam, quae. Quisquam,
+                    quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae. Quisquam, quae.
+                    Quisquam,
+                    quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae. Quisquam, quae.
+                    Quisquam,
+                    quae.
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae. Quisquam, quae. Quisquam,
+                    quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae. Quisquam, quae.
+                    Quisquam,
+                    quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae. Quisquam, quae.
+                    Quisquam,
+                    quae.
+                </p>
+            </div>
+        </div>
+    </section>
+    <!-- footer -->
+    <footer class="footer">
+        <div class="footer-overlay"></div>
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <img src="images/logo.png" alt="logo" class="footer-logo">
+                <p class="">TRASAVE travel fund is a good way to save money for your travel fund. You
+                    can save money.</p>
+                <div class="social-links">
+                    <i class="fa fa-facebook-square"></i>
+                    <i class="fa fa-twitter-square"></i>
+                    <i class="fa fa-instagram"></i>
+                    <i class="fa fa-linkedin-square"></i>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <h1 class="">About</h1>
+                <ul class="">
+                    <li><a href="#">Technical Info</a></li>
+                    <li><a href="#">Other Products</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h1 class="">Contact Us</h1>
+                <address>
+                    <p>Bengaluru, India</p>
+                    <a href="tel:8003010108" class="">8003010108</a>
+                    <a href="mailto:hr@curlistic.com" class="text-white">hr@curlistic.com</a>
+                </address>
+            </div>
+            <div class="col-md-3 text-right">
+                <h1 class=""><span class="newsletter-text">Subscribe </span>Newsletter</h1>
+                <form action="" class="">
+                    <input type="email" placeholder="Enter your email" class="form-input">
+                    <button type="submit" class="btn-subscribe">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </footer>
+    <!-- end of footer -->
+</body>
+
+</html>
